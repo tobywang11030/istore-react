@@ -7712,11 +7712,6 @@ form .required {
   -webkit-transition: all .5s ease;
           transition: all .5s ease;
 }
-.is-header .is-header-login .logged_in .logined-in-user-info .username-icon {
-  -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-          transform: rotate(90deg);
-}
 .is-header .is-header-login .logged_in .dropdown-menu {
   top: -13px;
   padding-top: 59px;
@@ -15095,9 +15090,6 @@ a:active {
 }
 .istore-icon-chevron-left:before {
   content: "\e900";
-}
-.istore-icon-chevron-right:before {
-  content: "\e901";
 }
 .istore-icon-chevrons-right:before {
   content: "\e911";

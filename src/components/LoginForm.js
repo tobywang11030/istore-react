@@ -1,6 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import cookie from 'react-cookies';
 
-export default class LoginForm extends PureComponent {
+export default class LoginForm extends Component {
+
+  loginSubmit = () => {
+    cookie.save('isLogin', true);
+    window.location.href = '/';
+  }
+
   render(){
     return (
       <div className="is-login">
@@ -10,7 +17,7 @@ export default class LoginForm extends PureComponent {
         <div className="login-form">
           <div className="yCmsContentSlot row">
             <div className="yCmsComponent col-sm-8 col-xs-12 col-sm-offset-2">
-              <form id="loginForm" action="/j_spring_security_check" method="post">
+              <form id="loginForm">
               <div className="row">
                   <div className="col-xs-12 col-sm-6">
                     <div className="userLogin login_container">
@@ -41,7 +48,7 @@ export default class LoginForm extends PureComponent {
                           </div>
                         </div>
                         <div className="form-actions clearfix">
-                          <button type="submit" className="btn btn-login positive">登录</button>
+                          <button type="button" onClick={this.loginSubmit} className="btn btn-login positive">登录</button>
                         </div>
                       </div>
                     </div>

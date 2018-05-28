@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './static/css/App.css';
 import Header from './components/Header'
 import LoginForm from './components/LoginForm';
+import List from './components/List'
 import {
   BrowserRouter as Router,
   Route
@@ -17,6 +18,7 @@ export default class App extends Component {
           <Header/>
           <div id="content" className="clearfix">
             <div className="container">
+              <Route exact path="/" component={List} />
               <Route path="/login" component={LoginForm} />
             </div>
           </div>
