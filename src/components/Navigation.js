@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Search from './Search';
+
 
 
 export default class Navigation extends Component {
@@ -26,7 +26,6 @@ export default class Navigation extends Component {
   }
 
   render() {
-    
     return ( 
       <div className="is-header-anything">
        <div className="yCmsContentSlot">
@@ -37,7 +36,6 @@ export default class Navigation extends Component {
               })
             }
           </div>
-          <Search/>
         </div>
     </div>
     )

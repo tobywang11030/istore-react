@@ -7,7 +7,7 @@ export default class Logo extends PureComponent {
 				<div className="yCmsContentSlot is-logo">
           <div className="yCmsComponent is-header-logo">
             <a href="/">
-              <img title="iStore Site" alt="iStore Site" src={require('../static/img/logo.png')}/>
+              <img title="iStore Site" alt="iStore Site" src={require('../static/img/logo-hybris.png')}/>
             </a>
 	      	</div>
         </div>

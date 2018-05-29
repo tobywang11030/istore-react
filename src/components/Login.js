@@ -25,7 +25,7 @@ export default class Login extends Component {
     var LoginDiv;
     if (!this.state.isLogin) {
       LoginDiv = (
-        <a className="not-login" href="/login">
+         <a className="not-login" href="/login">
          <span className="istore-icon-user"><i class="fas fa-user"></i></span> 
          <span className="login-icon">请登录</span> 
          </a>
@@ -35,7 +35,7 @@ export default class Login extends Component {
         <li className="logged_in">
 			  <a className="logined-in-user-info" href="/my-account">
 					<span className="istore-icon-user in"></span>
-					<span className="username">tobywang&nbsp;</span>
+					<span className="username">Admin</span>
 					<span className="username-icon istore-icon-chevron-right"><i class="fas fa-angle-down"></i></span>
 			  </a>
 			 
