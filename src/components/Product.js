@@ -8,10 +8,10 @@ export default class Product extends PureComponent {
       <div className="istore-plp-items ">
         <div className="plp-items-img">
             <a href=""
-                title="苹果" className="productMainLink">
+                title={this.props.title} className="productMainLink">
                
                 <img src={require('../static/img/1.jpg')}
-                    alt="苹果" title="苹果" id="pdpProduct" width="" height=""/>
+                    alt={this.props.title} title={this.props.title} id="pdpProduct" width="" height=""/>
                 {/* <img src={require(this.props.img)} /> */}
 
             </a>

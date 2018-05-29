@@ -19,7 +19,7 @@ export default class Page extends PureComponent {
             <div className="container">
                 <Route exact path="/" component={Content} />
                 <Route path="/login" component={LoginForm} />
-                <Route path="/:category" component={Content} />
+                <Route path="/category/:category" component={Content} />
             </div>
         </div>
     </div>

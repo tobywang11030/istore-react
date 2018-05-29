@@ -19,60 +19,15 @@ export default class Content extends Component {
       }
     
       getProductsByCategory() {
-
-        let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/category';
-
-        let category = this.props.match.params.category;
-        if(category==='books'){
-            callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/category';
-        }else if(category==='foods'){
-            callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/category';
-        }else if(category==='3c'){
-            callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/category';
-        }else if(category==='living'){
-            callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/category';
-        }
+        let category = this.props.match.params.category ? this.props.match.params.category : 'all';
+        let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/' + category;
+        console.log(callURL);
+    
 
         axios.get(callURL)
           .then(res => {
             this.setState({
-                products: ([
-                    {
-                      "title": "苹果",
-                      "img": "../static/img/1.jpg",
-                      "price":"¥5.0",
-                      "owner":"larajia",
-                      "ownerIcon":"../static/img/mandatory.gif"
-                    },
-                    {
-                      "title": "秘制牛肉酱",
-                      "img": "../static/img/2.jpg",
-                      "price":"¥34.0",
-                      "owner":"herbertli",
-                      "ownerIcon":"../static/img/mandatory.gif"
-                    },
-                    {
-                      "title": "山东乳山虾仁",
-                      "img": "../static/img/3.jpg",
-                      "price":"¥33.0",
-                      "owner":"rcai",
-                      "ownerIcon":"../static/img/mandatory.gif"
-                    },
-                    {
-                      "title": "厨房垃圾处理器",
-                      "img": "../static/img/4.jpg",
-                      "price":"¥50.0",
-                      "owner":"candicewang",
-                      "ownerIcon":"../static/img/mandatory.gif"
-                    },
-                    {
-                      "title": "墨斗鱼",
-                      "img": "../static/img/4.jpg",
-                      "price":"¥50.0",
-                      "owner":"larryli",
-                      "ownerIcon":"../static/img/mandatory.gif"
-                    }
-                  ])
+                products: res.data.products
             });
           });
       }
@@ -101,7 +56,7 @@ export default class Content extends Component {
 
                                 {
                                     this.state.products.map((item, index) => {
-                                        return <Product {...item}/>
+                                        return <Product key = {index}{...item}/>
                                     })
                                 }
 

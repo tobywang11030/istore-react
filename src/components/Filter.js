@@ -12,7 +12,7 @@ export default class Filter extends PureComponent {
                         <input type="hidden" name="q" value=":modificationDate:status:ForSale:price:¥0-¥19.99"/>
                         <input type="hidden" name="text" value=""/>
                         <label className="filter-value">
-                            <input type="checkbox" onchange="$(this).closest('form').submit()"/> ¥0-¥19.99
+                            <input type="checkbox" /> ¥0-¥19.99
                             <span className="facetValueCount">(1)</span>
                         </label>
                     </form>
@@ -20,7 +20,7 @@ export default class Filter extends PureComponent {
                         <input type="hidden" name="q" value=":modificationDate:status:ForSale:price:¥20-¥49.99"/>
                         <input type="hidden" name="text" value=""/>
                         <label className="filter-value">
-                            <input type="checkbox" onchange="$(this).closest('form').submit()"/> ¥20-¥49.99
+                            <input type="checkbox" /> ¥20-¥49.99
                             <span className="facetValueCount">(4)</span>
                         </label>
                     </form>
