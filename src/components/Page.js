@@ -11,7 +11,7 @@ import {
   Route
 } from 'react-router-dom'
 
-export default class Header extends PureComponent {
+export default class Page extends PureComponent {
   render(){
     return (
 
@@ -41,7 +41,7 @@ export default class Header extends PureComponent {
             <ul className="clear_fix">
             </ul>
         </div>
-        
+
         <div className="container">
             <div id="breadcrumb" className="breadcrumb">
                 <ul className="clearfix">
