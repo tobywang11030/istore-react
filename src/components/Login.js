@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
+import $ from 'jquery';
 
 export default class Login extends Component {
   constructor(){
@@ -21,6 +22,34 @@ export default class Login extends Component {
       });
     }
   }
+
+  logout = () => {
+    cookie.remove('isLogin');
+    console.log('remove loginCookieFlag');
+  }
+
+  componentDidMount() { 
+    var oUserInfo = $(".logged_in .logined-in-user-info");
+    var hov_box = $('#hover_box');
+    var t;
+    oUserInfo.hover(function(){
+      hov_box.css('display','block');
+    }, function(){
+      clearTimeout(t);
+      t = setTimeout(function(){
+        if (!hov_box.is('.expanded')) {
+          hov_box.css('display','none');
+        }
+      } ,30);
+    });
+    hov_box.hover(function(){ 
+      clearTimeout(t);
+      hov_box.addClass('expanded');
+    },function(){
+      hov_box.removeClass('expanded').css('display','none');
+    });
+  }
+
   render(){
     var LoginDiv;
     if (!this.state.isLogin) {
@@ -56,8 +85,7 @@ export default class Login extends Component {
 				  <li role="separator" className="divider"></li>
 				  
 				  <li className="hover-box">
-						<a href="/logout">
-							退出</a>
+            <a href='/' onClick = {this.logout}>退出</a>
 					</li>
 				</ul>
 			</li>

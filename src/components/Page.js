@@ -11,7 +11,6 @@ import {
 export default class Page extends PureComponent {
   render(){
     return (
-
     <Router>
       <div id="page" data-currency-iso-code="RMB">
         <Header/>
@@ -20,6 +19,7 @@ export default class Page extends PureComponent {
             <div className="container">
                 <Route exact path="/" component={List} />
                 <Route path="/login" component={LoginForm} />
+                <Route path="/category/:categoryID" component={List} />
             </div>
         </div>
     </div>
