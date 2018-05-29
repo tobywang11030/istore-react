@@ -16,7 +16,7 @@ export default class Page extends PureComponent {
     <Router>
       <div id="page" data-currency-iso-code="RMB">
         <Header/>
-        <Breadcrumb/>
+        <Route component={Breadcrumb} />
         <div id="content" className="clearfix">
             <div className="container">
                 <Route exact path="/" component={Content} />

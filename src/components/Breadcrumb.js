@@ -27,14 +27,12 @@ export default class Breadcrumb extends Component {
 
 	componentWillMount() {
 		this.getProductByID();
-		console.log('aa',this.state);
 	}
 
 	getProductByID() { 
-		//let pid = this.props.match.params.pid;
-		let pid = 1;
-		let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/detail/' + pid;
-		console.log(callURL);
+		let pid = this.props.location.pathname;
+		let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api' + pid;
+		console.log('aaaaaa', this.props,callURL);
 
 		axios.get(callURL)
 			.then(res => {
