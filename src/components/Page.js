@@ -36,7 +36,7 @@ export default class Page extends PureComponent {
                 </div>
             </div>
         </div>
-        <a id="skiptonavigation"></a>
+        <a id="skiptonavigation"> </a>
         <div>
             <ul className="clear_fix">
             </ul>
@@ -51,8 +51,7 @@ export default class Page extends PureComponent {
     
                     <li className="separator">&gt;</li>
                     <li>
-    
-                        <a href="#" onclick="return false;" className="last">登录</a>
+                        <a className="last">登录</a>
                     </li>
     
                 </ul>

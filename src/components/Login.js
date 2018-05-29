@@ -26,7 +26,7 @@ export default class Login extends Component {
     if (!this.state.isLogin) {
       LoginDiv = (
          <a className="not-login" href="/login">
-         <span className="istore-icon-user"><i class="fas fa-user"></i></span> 
+         <span className="istore-icon-user"><i className="fas fa-user"></i></span> 
          <span className="login-icon">请登录</span> 
          </a>
       )
@@ -36,7 +36,7 @@ export default class Login extends Component {
 			  <a className="logined-in-user-info" href="/my-account">
 					<span className="istore-icon-user in"></span>
 					<span className="username">Admin</span>
-					<span className="username-icon istore-icon-chevron-right"><i class="fas fa-angle-down"></i></span>
+					<span className="username-icon istore-icon-chevron-right"><i className="fas fa-angle-down"></i></span>
 			  </a>
 			 
 				<ul id="hover_box" className="dropdown-menu" style={this.state.style}>

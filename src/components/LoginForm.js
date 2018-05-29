@@ -27,24 +27,24 @@ export default class LoginForm extends Component {
                       <div className="item_container">
                         <div className="form_field-elements">
                           <div className="form-group">
-                            <label className="control-label sr-only" for="j_username">
+                            <label className="control-label sr-only">
                               电脑用户名
                               <span className="mandatory">
                                 <img width="5" height="6" alt="login.required" title="login.required" src={require('../static/img/mandatory.gif')}/>>
                               </span>
                               <span className="skip"></span>
                             </label>
-                            <input id="j_username" name="j_username" className="form-control" placeholder="电脑用户名" type="text" value="" autocomplete="off"/>
+                            <input id="j_username" name="j_username" className="form-control" placeholder="电脑用户名" type="text" value="" />
                           </div>
                           <div className="form-group">
-                            <label className="control-label sr-only" for="j_password">
+                            <label className="control-label sr-only">
                               电脑密码
                               <span className="mandatory">
                                 <img width="5" height="6" alt="login.required" title="login.required" src={require('../static/img/mandatory.gif')}/>
                               </span>
                               <span className="skip"></span>
                             </label>
-                            <input id="j_password" name="j_password" className="form-control password" placeholder="电脑密码" type="password" value="" autocomplete="off"/>
+                            <input id="j_password" name="j_password" className="form-control password" placeholder="电脑密码" type="password" value="" />
                           </div>
                         </div>
                         <div className="form-actions clearfix">
