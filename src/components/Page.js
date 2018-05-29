@@ -2,13 +2,15 @@ import React, { PureComponent } from 'react';
 import LoginForm from './LoginForm';
 import Content from './Content'
 import Header from './Header';
-import Breadcrumb from './Breadcrumb'
+import Breadcrumb from './Breadcrumb';
+import Detail from './Detail'
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
 
 export default class Page extends PureComponent {
+
   render(){
     return (
     <Router>
@@ -20,6 +22,7 @@ export default class Page extends PureComponent {
                 <Route exact path="/" component={Content} />
                 <Route path="/login" component={LoginForm} />
                 <Route path="/category/:category" component={Content} />
+                <Route path="/detail/:pid" component={Detail} />
             </div>
         </div>
     </div>

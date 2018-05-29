@@ -5667,6 +5667,12 @@ react-router-dom@^4.2.2:
     react-router "^4.2.0"
     warning "^3.0.0"
 
+react-router-dynamic-breadcrumbs@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-router-dynamic-breadcrumbs/-/react-router-dynamic-breadcrumbs-2.1.1.tgz#b7f799ae55c5c8b741f389194ff4d749bfae512a"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-router@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.2.0.tgz#61f7b3e3770daeb24062dae3eedef1b054155986"
