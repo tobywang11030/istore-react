@@ -42,11 +42,7 @@ export default class Content extends Component {
             <div id="globalMessages">
             </div>
             <div className="col-sm-12 facetNavigation">
-    
-
                 <Filter/>
-
-
             </div>
             <div className="col-sm-12">
                 <div className="plp-body">

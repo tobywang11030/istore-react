@@ -10,9 +10,9 @@ export default class Product extends PureComponent {
             <a href=""
                 title={this.props.title} className="productMainLink">
                
-                <img src={require('../static/img/1.jpg')}
+                <img src={this.props.img}
                     alt={this.props.title} title={this.props.title} id="pdpProduct" width="" height=""/>
-                {/* <img src={require(this.props.img)} /> */}
+                {/* <img src={require(--this.props.img|)} /> */}
 
             </a>
         </div>
