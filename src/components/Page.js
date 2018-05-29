@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import LoginForm from './LoginForm';
-import List from './List'
+import Content from './Content'
 import Header from './Header';
 import Breadcrumb from './Breadcrumb'
 import {
@@ -17,9 +17,9 @@ export default class Page extends PureComponent {
         <Breadcrumb/>
         <div id="content" className="clearfix">
             <div className="container">
-                <Route exact path="/" component={List} />
+                <Route exact path="/" component={Content} />
                 <Route path="/login" component={LoginForm} />
-                <Route path="/category/:categoryID" component={List} />
+                <Route path="/category/:categoryID" component={Content} />
             </div>
         </div>
     </div>
