@@ -39,7 +39,10 @@ export default class Breadcrumb extends Component {
 				this.setState({
 						product: res.data.product
 				});
-			});
+			})
+			.catch(function (error) {
+				console.log(error);
+			});;
 	}
 
   render() {
