@@ -1,71 +1,30 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import {
-  BrowserRouter as Router,
-} from 'react-router-dom'
-     
-import Breadcrumbs  from 'react-router-dynamic-breadcrumbs';   
-  
-/**
-*  Create routes mapping
-*  
-*  All dynamic params will display automatically.
-*  not that even though '/users/:id' route is not in configuration file, 
-*  it's corresponding link it will be displayed as the value of ':id'
-*/
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
-	
-// https://www.npmjs.com/package/react-router-dynamic-breadcrumbs
+// breadcrumbs can be any type of component or string
+const UserBreadcrumb = ({ match }) =>
+  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
-export default class Breadcrumb extends Component {
-	constructor(){
-		super();
-		this.state = {
-			product: {}
-		}
-	}
+// define some custom breadcrumbs for certain routes (optional)
+const routes = [
+	// { path: '/category/:categoryId', breadcrumb: UserBreadcrumb },
+  { path: '/', breadcrumb: 'Home' },
+];
 
-	componentWillMount() {
-		this.getProductByID();
-	}
+// map & render your breadcrumb components however you want.
+// each `breadcrumb` has the props `key`, `location`, and `match` included!
+const Breadcrumbs = ({ breadcrumbs }) => (
+  <div>
+    {breadcrumbs.map((breadcrumb, index) => (
+      <span key={breadcrumb.key}>
+        <NavLink to={breadcrumb.props.match.url}>
+          {breadcrumb}
+        </NavLink>
+        {(index < breadcrumbs.length - 1) && <i> / </i>}
+      </span>
+    ))}
+  </div>
+);
 
-	getProductByID() { 
-		let pid = this.props.location.pathname;
-		let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api' + pid;
-		console.log('aaaaaa', this.props,callURL);
-
-		axios.get(callURL)
-			.then(res => {
-				this.setState({
-						product: res.data.product
-				});
-			})
-			.catch(function (error) {
-				console.log(error);
-			});;
-	}
-
-  render() {
-
-		const routes = {
-			'/': '首页',
-			'/category': '全部商品',
-			'/detail': '商品详情',
-			'/detail/:pid': this.state.product.title
-			 
-		};
-	
-    return (
-			<div className="container">
-				<div id="breadcrumb" className="breadcrumb">
-
-						<Router>
-								<Breadcrumbs mappedRoutes={routes} />
-						</Router>
-					
-				</div>
-			</div>
-    );
-  }
-}
- 
+export default withBreadcrumbs(routes)(Breadcrumbs);
