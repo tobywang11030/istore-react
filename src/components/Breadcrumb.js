@@ -7,12 +7,17 @@ import $ from 'jquery';
 // https://github.com/icd2k3/react-router-breadcrumbs-hoc
 
 // breadcrumbs can be any type of component or string
-const UserBreadcrumb = ({ match }) =>
-  <span>{getProductName(match.params.pid)}</span>; // use match param userId to fetch/display user name
+
+const UserBreadcrumb = ({ match }) =>{
+  console.log(match)
+  return <span>{getProductName(match.params.pid)}</span>;
+}
 
 // define some custom breadcrumbs for certain routes (optional)
 const routes = [
-	{ path: '/detail/:pid', breadcrumb: UserBreadcrumb },
+  { path: '/detail/:pid', breadcrumb: UserBreadcrumb },
+  { path: '/category', breadcrumb: null },
+  { path: '/detail', breadcrumb: null },
   { path: '/', breadcrumb: 'Home' },
 ];
 
@@ -20,11 +25,6 @@ function getProductName(id) {
   let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/detail/' + id;
   console.log(callURL); 
   let productName;
-
-  // axios.get(callURL)
-  //   .then(res => {
-  //     productName = res.data.product.title
-  //   });
   $.ajax({    
     type : "get",    
     url : callURL,     
@@ -47,12 +47,10 @@ const Breadcrumbs = ({ breadcrumbs }) => (
 				{breadcrumbs.map((breadcrumb, index) => (
 				
 					<li key={breadcrumb.key}>
-						<a>
 							<NavLink to={breadcrumb.props.match.url}>
 								{breadcrumb}
 							</NavLink>
 							{(index < breadcrumbs.length - 1) && <i> > </i>}
-						</a>
 					</li>
 
 				))}
