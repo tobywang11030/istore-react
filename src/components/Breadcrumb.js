@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
+
+// https://github.com/icd2k3/react-router-breadcrumbs-hoc
+
 // breadcrumbs can be any type of component or string
 const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
@@ -15,16 +18,27 @@ const routes = [
 // map & render your breadcrumb components however you want.
 // each `breadcrumb` has the props `key`, `location`, and `match` included!
 const Breadcrumbs = ({ breadcrumbs }) => (
-  <div>
-    {breadcrumbs.map((breadcrumb, index) => (
-      <span key={breadcrumb.key}>
-        <NavLink to={breadcrumb.props.match.url}>
-          {breadcrumb}
-        </NavLink>
-        {(index < breadcrumbs.length - 1) && <i> / </i>}
-      </span>
-    ))}
-  </div>
+
+	
+	<div id="breadcrumb" class="breadcrumb">
+		<ul class="clearfix">
+				{breadcrumbs.map((breadcrumb, index) => (
+				
+					<li key={breadcrumb.key}>
+						<a>
+							{console.log('---------',breadcrumb)}
+							<NavLink to={breadcrumb.props.match.url}>
+								{breadcrumb}
+							</NavLink>
+							{(index < breadcrumbs.length - 1) && <i> > </i>}
+						</a>
+					</li>
+
+				))}
+		</ul>
+
+	</div>
+
 );
 
 export default withBreadcrumbs(routes)(Breadcrumbs);
