@@ -3295,6 +3295,12 @@ https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
 
+humanize-string@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/humanize-string/-/humanize-string-1.0.2.tgz#fef0a8bc9b1b857ca4013bbfaea75071736988f6"
+  dependencies:
+    decamelize "^1.0.0"
+
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -5655,6 +5661,12 @@ react-dom@^16.3.2:
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-router-breadcrumbs-hoc@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-router-breadcrumbs-hoc/-/react-router-breadcrumbs-hoc-2.1.2.tgz#9bb17b751d0aa5cd1fdf8fb749ce86cfc9ade9e7"
+  dependencies:
+    humanize-string "^1.0.2"
 
 react-router-dom@^4.2.2:
   version "4.2.2"
