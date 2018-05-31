@@ -19,10 +19,7 @@ export default class Detail extends Component {
   }
 
   addToCart = () => {
-    let cartLists = cookie.load('cartLists');
-    if (!cartLists) {
-      cartLists = [];
-    }
+    let cartLists = cookie.load('cartLists') ? cookie.load('cartLists') : [];
     cartLists.push(this.state.product);
     emitter.emit('CartAdded');
     cookie.save('cartLists', cartLists);
@@ -197,16 +194,21 @@ export class Cart extends Component {
   }
 
   componentWillMount() {
-    emitter.on('CartAdded', function() { 
+    this.setCartFromCookie();
+    emitter.on('CartAdded', ()=> { 
       console.log('Cart Added Received'); 
-      let products = cookie.load('cartLists');
-      if (products) {
-        this.setState({
-          products : products
-        });
-      }
-      console.info('Get cats from cookie:', products);
+      this.setCartFromCookie();
 		}); 
+  }
+
+  setCartFromCookie = () => {
+    let products = cookie.load('cartLists');
+    if (products) {
+      this.setState({
+        products : products
+      });
+    }
+    console.info('Get cats from cookie:', products);
   }
 
   render(){

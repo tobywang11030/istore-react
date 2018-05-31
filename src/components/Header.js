@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Logo from './Logo';
-import Login from './Login';
+import {Login} from './LoginForm';
 import Navigation from './Navigation';
 import {Cart} from './Detail';
 import Search from './Search'
