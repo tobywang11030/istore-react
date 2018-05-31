@@ -101,10 +101,12 @@ export class Login extends Component {
     }
   }
 
-  logout = () => {
+  logout = (event) => {
+    event.preventDefault();
     cookie.remove('isLogin');
     cookie.remove('cartLists');
     console.log('remove loginCookieFlag');
+    window.location='/';
   }
 
   componentDidMount() { 
