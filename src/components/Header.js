@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Logo from './Logo';
 import Login from './Login';
 import Navigation from './Navigation';
-import Cart from './Cart';
+import {Cart} from './Detail';
 import Search from './Search'
 
 export default class Header extends PureComponent {

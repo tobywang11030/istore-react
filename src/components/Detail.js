@@ -1,48 +1,51 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import axios from 'axios';
-
+import cookie from 'react-cookies';
+var EventEmitter = require('events').EventEmitter;
+let emitter = new EventEmitter();
 export default class Detail extends Component {
 
 
-    constructor(){
-        super();
-        this.state = {
-          product: {},
-          style:{
-            display:'none'
-          }
-        }
+  constructor() {
+    super();
+    this.state = {
+      product: {},
+      style: {
+        display: 'none'
       }
-    
-      componentWillMount() {
-        this.getProductByID();
-        console.log('aa',this.state);
-        // this.setState({
-        //   product : ({
-        //     "title": "大卫拖把",
-        //     "primaryImage": "/img/3.jpg",
-        //     "images": [{
-        //       "image": "/img/3.jpg"
-        //     }],
-        //     "price": "¥5.0",
-        //     "owner": "larajia",
-        //     "ownerIcon": "/static/img/mandatory.gif"
-        //   })
-        // })
-      }
-    
-      getProductByID() { 
-        let pid = this.props.match.params.pid;
-        let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/detail/' + pid;
-        console.log(callURL);
+    }
+  }
 
-        axios.get(callURL)
-          .then(res => {
-            this.setState({
-                product: res.data.product
-            });
-          });
-      }
+  addToCart = () => {
+    let cartLists = cookie.load('cartLists');
+    if (!cartLists) {
+      cartLists = [];
+    }
+    cartLists.push(this.state.product);
+    emitter.emit('CartAdded');
+    cookie.save('cartLists', cartLists);
+    console.log('Add to cart Event', this.state.product);
+  }
+
+  componentWillMount() {
+    this.getProductByID();
+    console.log('aa', this.state);
+  }
+
+  getProductByID() {
+    let pid = this.props.match.params.pid;
+    let callURL = 'https://easy-mock.com/mock/5b07d6d77bebfe1c7e53d20a/api/detail/' + pid;
+    console.log(callURL);
+
+    axios.get(callURL)
+      .then(res => {
+        this.setState({
+          product: res.data.product
+        });
+      });
+  }
 
   render(){
     
@@ -127,7 +130,7 @@ export default class Detail extends Component {
                 <form id="addToCartForm" className="add_to_cart_form" action="/cart/add" method="post">
                   <input type="hidden" maxLength="3" size="1" id="qty" name="qty" className="qty" value="1" /> 
                   <input type="hidden" name="productCodePost" value="1-11-64-0002001" /> 
-                  <button type="button" className="btn btn-default btn-block js-pdp-btn-cart"> 加入购物车</button> 
+                  <button type="button" onClick={this.addToCart} className="btn btn-default btn-block js-pdp-btn-cart"> 加入购物车</button> 
                   <div> 
                   <input type="hidden" name="CSRFToken" value="bddc76e9-493c-427f-ad94-c7220678f965" /> 
                   </div>
@@ -180,6 +183,52 @@ export default class Detail extends Component {
           </div> 
           </div> 
      </div>
+    )
+  }
+
+}
+export class Cart extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      products : []
+    }
+  }
+
+  componentWillMount() {
+    emitter.on('CartAdded', function() { 
+      console.log('Cart Added Received'); 
+      let products = cookie.load('cartLists');
+      if (products) {
+        this.setState({
+          products : products
+        });
+      }
+      console.info('Get cats from cookie:', products);
+		}); 
+  }
+
+  render(){
+    return (
+      <div className="col-sm-2">
+				<div className="is-header-menu">
+					<div className="header-menu-postproduct">
+						<a href="/product/add" alt="Publish Product" title="Publish Product">
+							<span className="istore-icon-plus-circle"><i className="fas fa-plus-circle"></i></span>
+							<span>发布商品</span>
+						</a>
+					</div>
+					<div className="yCmsComponent miniCart">
+             <a href="/cart" className="minicart">
+	              <span className="istore-icon-shopping-cart"><i className="fas fa-cart-plus"></i></span>
+                <span className="minicart-count">{this.state.products.length}</span>
+        	   </a>
+             <div id="miniCartLayer" className="miniCartPopup" data-refreshminicarturl="/cart/miniCart/SUBTOTAL/?" data-rolloverpopupurl="/cart/rollover/MiniCart">
+             </div>
+          </div>
+        </div>
+			</div>
     )
   }
 
