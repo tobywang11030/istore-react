@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import cookie from 'react-cookies';
+import CartItem from './CartItem'
 var EventEmitter = require('events').EventEmitter;
 let emitter = new EventEmitter();
 export default class Detail extends Component {
@@ -28,7 +29,7 @@ export default class Detail extends Component {
 
   componentWillMount() {
     this.getProductByID();
-    console.log('aa', this.state);
+    console.log('Get Product From API', this.state.product);
   }
 
   getProductByID() {
@@ -184,6 +185,9 @@ export default class Detail extends Component {
   }
 
 }
+
+
+
 export class Cart extends Component {
 
   constructor(){
@@ -222,7 +226,7 @@ export class Cart extends Component {
 						</a>
 					</div>
 					<div className="yCmsComponent miniCart">
-             <a href="/cart" className="minicart">
+             <a href="/carts" className="minicart">
 	              <span className="istore-icon-shopping-cart"><i className="fas fa-cart-plus"></i></span>
                 <span className="minicart-count">{this.state.products.length}</span>
         	   </a>
@@ -235,4 +239,58 @@ export class Cart extends Component {
   }
 
 }
+
+
+export class Carts extends Component {
+
+
+  constructor() {
+    super();
+    this.state = {
+      products: {}
+    }
+  }
+
+  deleteCartByID = (id) => {
+    let newCarts = this.state.products.filter((item, index) => index !==id);
+    this.setState({
+      products: newCarts
+    });
+    emitter.emit('CartAdded');
+    cookie.save('cartLists', newCarts);
+    console.log('Add to cart Event', newCarts);
+
+  }
+
+  getCartsFromCookie = () => {
+    let cartLists = cookie.load('cartLists') ? cookie.load('cartLists') : [];
+    this.setState({
+      products: cartLists
+    });
+  }
+
+  componentWillMount() {
+    this.getCartsFromCookie();
+    console.log('Get Carts From Cookie', this.state.products);
+  }
+
+
+  render(){
+    
+    return (
+      <div className="cart-list"> 
+      <ul>
+        {
+          this.state.products.map((item, index) => {
+            return <li key={index}><CartItem product={item} index={index} deleteCartByID={this.deleteCartByID}/></li>
+          })
+        }
+      </ul>
+
+     </div>
+    )
+  }
+
+}
+
 

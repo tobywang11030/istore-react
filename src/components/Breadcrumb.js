@@ -18,7 +18,9 @@ const routes = [
   { path: '/detail/:pid', breadcrumb: UserBreadcrumb },
   { path: '/category', breadcrumb: null },
   { path: '/detail', breadcrumb: null },
-  { path: '/', breadcrumb: 'Home' },
+  { path: '/', breadcrumb: '主页' },
+  { path: '/carts', breadcrumb: '购物车' },
+  { path: '/login', breadcrumb: '登录' },
 ];
 
 function getProductName(id) {

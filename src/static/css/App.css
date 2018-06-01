@@ -19490,3 +19490,7 @@ ul.nav__links::after {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+.cart-item{
+  display: flex;
+  justify-content: space-between;
+}
