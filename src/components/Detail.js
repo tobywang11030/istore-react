@@ -22,8 +22,8 @@ export default class Detail extends Component {
   addToCart = () => {
     let cartLists = cookie.load('cartLists') ? cookie.load('cartLists') : [];
     cartLists.push(this.state.product);
-    emitter.emit('CartAdded');
     cookie.save('cartLists', cartLists);
+    emitter.emit('CartAdded');
     console.log('Add to cart Event', this.state.product);
   }
 
@@ -256,9 +256,9 @@ export class Carts extends Component {
     this.setState({
       products: newCarts
     });
-    emitter.emit('CartAdded');
     cookie.save('cartLists', newCarts);
     console.log('Add to cart Event', newCarts);
+    emitter.emit('CartAdded');
 
   }
 
