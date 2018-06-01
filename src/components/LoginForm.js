@@ -1,20 +1,61 @@
 import React, { Component } from 'react';
 import cookie from 'react-cookies';
 import $ from 'jquery';
+import AlertBox from './AlertBox'
 var EventEmitter = require('events').EventEmitter;
 let emitter = new EventEmitter();
 export default class LoginForm extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      style: {
+        display: 'none'
+      },
+      userName: '',
+      userPws: '',
+      message: '密码错误!'
+    }
+  }
 
   loginSubmit = () => {
-    cookie.save('isLogin', true);
-    console.log('login successful');
-    emitter.emit('LoginSuccessful');
-    this.props.history.push("/");
+    if (this.state.userName === 'admin' && this.state.userPws === 'admin') {
+      cookie.save('isLogin', true);
+      console.log('login successful');
+      emitter.emit('LoginSuccessful');
+      this.setState({
+        style: {
+          display: 'none'
+        }
+      });
+      this.props.history.push("/");
+    } else {
+      this.setState({
+        style: {
+          display: 'block'
+        }
+      });
+    }
+  }
+
+  handleInput = (type, event) => {
+    let value = event.target.value;
+    switch(type){
+      case 'userName':
+        this.setState({userName: value})
+      break;
+      case 'userPws':
+        this.setState({userPws: value})
+      break;
+      default:;
+    }
+
   }
 
   render(){
     return (
+      <div>
+        <AlertBox style = {this.state.style} message= {this.state.message}/>
       <div className="is-login">
         <div className="login-background">
         <img src={require('../static/img/login-bg.jpg')} alt=""/>
@@ -39,7 +80,7 @@ export default class LoginForm extends Component {
                               </span>
                               <span className="skip"></span>
                             </label>
-                            <input id="j_username" name="j_username" className="form-control" placeholder="电脑用户名" type="text" value="" />
+                            <input id="j_username" name="j_username" className="form-control" placeholder="电脑用户名" type="text" value={this.state.userName}  onChange={this.handleInput.bind(this, 'userName')}/>
                           </div>
                           <div className="form-group">
                             <label className="control-label sr-only">
@@ -49,11 +90,11 @@ export default class LoginForm extends Component {
                               </span>
                               <span className="skip"></span>
                             </label>
-                            <input id="j_password" name="j_password" className="form-control password" placeholder="电脑密码" type="password" value="" />
+                            <input id="j_password" name="j_password" className="form-control password" placeholder="电脑密码" type="password" value={this.state.userPws} onChange={this.handleInput.bind(this, 'userPws')}/>
                           </div>
                         </div>
                         <div className="form-actions clearfix">
-                          <button type="button" onClick={this.loginSubmit} className="btn btn-login positive">登录</button>
+                          <button type="button" onClick={this.loginSubmit.bind(this)} className="btn btn-login positive">登录</button>
                         </div>
                       </div>
                     </div>
@@ -66,6 +107,7 @@ export default class LoginForm extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }
